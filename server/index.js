@@ -1,8 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require('socket.io');
 const jwt = require('jsonwebtoken');
-const cors = require('cors')
+const cors = require('cors');
 const User = require('./src/models/User');
 const Message = require('./src/models/Message');
 const mongoose = require('mongoose');
@@ -16,9 +19,17 @@ mongoose.connect(process.env.MONGO_URI)
     })
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173', credentials: true
+}));
 
 const JWT_SECRET = process.env.JWT_SECRET;
+const io = new Server(server, {
+    cors: {
+        origin: 'http://localhost:5173',
+        credentials: true
+    }
+});
 
 app.get('/users', async (req, res) => {
     try {
@@ -55,6 +66,6 @@ app.post('/users/login', async (req, res) => {
     }
 })
 
-app.listen(8000, () => {
+server.listen(8000, () => {
     console.log('Listening to port 8000')
 })
