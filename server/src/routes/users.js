@@ -46,10 +46,10 @@ router.get('/:id', async (req, res) => {
         if (!token) {
             res.status(200).json({ status: 'failed', message: 'Token not found' })
         }
-        const decodedToken = jwt.verify(token, JWT_SECRET);
+        jwt.verify(token, JWT_SECRET);
         const { id } = req.params;
         const user = await User.findById(id);
-        res.status(200).json({ user, decodedToken })
+        res.status(200).json(user)
     } catch (err) {
         res.status(500).json(err);
     }
