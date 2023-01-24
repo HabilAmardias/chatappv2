@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Chatroom = require('../models/Chatroom');
 const jwt = require('jsonwebtoken');
-const { route } = require('./users');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
