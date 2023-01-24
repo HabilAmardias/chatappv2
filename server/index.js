@@ -1,13 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const http = require('http');
-const server = http.createServer(app);
-const { Server } = require('socket.io');
-const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const User = require('./src/models/User');
-const Message = require('./src/models/Message');
+const userRoute = require('./src/routes/users');
+const messageRoute = require('./src/routes/messages');
+const chatroomRoute = require('./src/routes/chatrooms');
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGO_URI)
@@ -23,63 +20,12 @@ app.use(cors({
     origin: 'http://localhost:5173', credentials: true
 }));
 
-const JWT_SECRET = process.env.JWT_SECRET;
-const io = new Server(server, {
-    cors: {
-        origin: 'http://localhost:5173',
-        credentials: true
-    }
-});
 
-app.get('/users', async (req, res) => {
-    try {
-        const usersData = await User.find({});
-        res.json(usersData)
-    } catch (err) {
-        console.log(err);
-    }
-})
+app.use('/users', userRoute);
+app.use('/messages', messageRoute);
+app.use('/chatrooms', chatroomRoute);
 
-app.post('/users', async (req, res) => {
-    try {
-        const { username, password, email } = req.body;
-        const newUser = new User({ username, password, email });
-        const createdUser = await newUser.save();
-        res.json(createdUser);
-    } catch (err) {
-        console.log(err);
-    }
-})
 
-app.post('/users/login', async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        const findUser = await User.findAndAuth(email, password);
-        if (findUser) {
-            const token = jwt.sign({ sub: findUser._id }, JWT_SECRET);
-            res.json({ user: findUser, token: token })
-        } else {
-            res.send(findUser)
-        }
-    } catch (err) {
-        console.log(err);
-    }
-})
-
-app.get('/users/:id', async (req, res) => {
-    try {
-        const token = req.headers.authorization.split(' ')[1];
-        if (!token) {
-            res.status(200).json({ status: 'failed', message: 'Token not found' })
-        }
-        const decodedToken = jwt.verify(token, JWT_SECRET);
-        const { id } = req.params;
-        const user = await User.findById(id);
-        res.status(200).json({ user, decodedToken })
-    } catch (err) {
-        console.log(err);
-    }
-})
-server.listen(8000, () => {
+app.listen(8000, () => {
     console.log('Listening to port 8000')
 })
