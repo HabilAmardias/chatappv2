@@ -7,7 +7,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 router.get('/', async (req, res) => {
     try {
-        const usersData = await User.find({});
+        const usersData = await User.find({}).populate('contacts');
         res.json(usersData)
     } catch (err) {
         res.status(500).json(err);
@@ -48,8 +48,29 @@ router.get('/:id', async (req, res) => {
         }
         jwt.verify(token, JWT_SECRET);
         const { id } = req.params;
-        const user = await User.findById(id);
+        const user = await User.findById(id).populate('contacts');
         res.status(200).json(user)
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+router.post('/:id', async (req, res) => {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        if (!token) {
+            res.status(200).json({ status: 'failed', message: 'Token not found' })
+        }
+        jwt.verify(token, JWT_SECRET);
+        const { id } = req.params;
+        const { username } = req.body;
+        const user = await User.findById(id).populate('contacts');
+        const newFriend = await User.findOne({ username: username }).populate('contacts');
+        user.contacts.push(newFriend._id);
+        newFriend.contacts.push(user._id);
+        await user.save();
+        await newFriend.save();
+        res.status(200).json({ user, newFriend });
     } catch (err) {
         res.status(500).json(err);
     }
