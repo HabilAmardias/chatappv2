@@ -66,6 +66,20 @@ app.post('/users/login', async (req, res) => {
     }
 })
 
+app.get('/users/:id', async (req, res) => {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        if (!token) {
+            res.status(200).json({ status: 'failed', message: 'Token not found' })
+        }
+        const decodedToken = jwt.verify(token, JWT_SECRET);
+        const { id } = req.params;
+        const user = await User.findById(id);
+        res.status(200).json({ user, decodedToken })
+    } catch (err) {
+        console.log(err);
+    }
+})
 server.listen(8000, () => {
     console.log('Listening to port 8000')
 })
