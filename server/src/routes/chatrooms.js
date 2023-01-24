@@ -30,7 +30,7 @@ router.get('/:userId', async (req, res) => {
         }
         jwt.verify(token, JWT_SECRET);
         const { userId } = req.params;
-        const chatroom = await Chatroom.find({ members: { $in: [userId] } });
+        const chatroom = await Chatroom.find({ members: { $in: [userId] } }).populate('members');
         res.status(200).json(chatroom);
     } catch (err) {
         res.status(500).json(err);
@@ -45,7 +45,7 @@ router.get('/:firstUserId/:secondUserId', async (req, res) => {
         }
         jwt.verify(token, JWT_SECRET);
         const { firstUserId, secondUserId } = req.params;
-        const chatroom = await Chatroom.findOne({ members: { $all: [firstUserId, secondUserId] } });
+        const chatroom = await Chatroom.findOne({ members: { $all: [firstUserId, secondUserId] } }).populate('members');
         res.status(200).json(chatroom);
     } catch (err) {
         res.status(500).json(err);
