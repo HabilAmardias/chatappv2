@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Navbar from './components/Navbar';
 import './App.css'
 import Cookies from 'js-cookie';
+import NotAuthorized from './components/NotAuthorized';
 
 function App() {
   const { userId } = useParams();
@@ -11,8 +12,14 @@ function App() {
     return (
       <>
         <Navbar userId={userId} />
-        <main />
+        <main>
+
+        </main>
       </>
+    )
+  } else {
+    return (
+      <NotAuthorized />
     )
   }
 }

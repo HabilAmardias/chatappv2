@@ -6,6 +6,7 @@ import { API_URL } from "./lib/api-url";
 import Navbar from "./components/Navbar";
 import UserProfile from "./components/UserProfile";
 import Loading from "./components/Loading";
+import NotAuthorized from "./components/NotAuthorized";
 
 export default function Profile() {
     const [user, setUser] = useState({})
@@ -46,6 +47,8 @@ export default function Profile() {
             </>
         )
     } else {
-
+        return (
+            <NotAuthorized />
+        )
     }
 }

@@ -6,6 +6,7 @@ import { API_URL } from "./lib/api-url";
 import Loading from "./components/Loading";
 import Navbar from "./components/Navbar";
 import UserContacts from "./components/UserContacts";
+import NotAuthorized from "./components/NotAuthorized";
 
 export default function ContactList() {
     const [contacts, setContacts] = useState([]);
@@ -37,10 +38,14 @@ export default function ContactList() {
                 ) : (
                     <>
                         <Navbar userId={userId} />
-                        <UserContacts contacts={contacts} onContactsChange={setContacts} />
+                        <UserContacts jwt={jwt} userId={userId} contacts={contacts} onContactsChange={setContacts} />
                     </>
                 )}
             </div>
+        )
+    } else {
+        return (
+            <NotAuthorized />
         )
     }
 }
