@@ -26,7 +26,7 @@ export default function SignUpForm({ onLoginChange }) {
                 Cookies.set('jwt', data.token);
                 navigate(`/${data.user._id}`);
             } else {
-                navigate('/login_error');
+                navigate('/auth_error');
             }
 
         } catch (err) {

@@ -3,6 +3,7 @@ export default function Navbar({ userId }) {
         <header>
             <nav>
                 <a href={`/${userId}`}>Home</a>
+                <a href={`/${userId}/contacts`}>Contacts</a>
                 <a href={`/${userId}/profile`}>Profile</a>
             </nav>
         </header>

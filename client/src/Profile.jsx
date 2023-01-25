@@ -6,7 +6,6 @@ import { API_URL } from "./lib/api-url";
 import Navbar from "./components/Navbar";
 import UserProfile from "./components/UserProfile";
 import Loading from "./components/Loading";
-import Head from "./components/Head";
 
 export default function Profile() {
     const [user, setUser] = useState({})
@@ -23,7 +22,7 @@ export default function Profile() {
         }
         const response = await fetch(`${API_URL}/users/${userId}`, requestOption);
         const data = await response.json();
-        setUser(data.user);
+        setUser(data);
         setLoading(false);
     }
     useEffect(() => {
@@ -31,20 +30,20 @@ export default function Profile() {
     }, [userId])
     if (jwt) {
         return (
-            <div>
-                {loading ? (
-                    <>
-                        <Head />
-                        <Loading />
-                    </>
-                ) : (
-                    <>
-                        <Head />
-                        <Navbar userId={userId} />
-                        <UserProfile user={user} />
-                    </>
-                )}
-            </div>
+            <>
+                <div>
+                    {loading ? (
+                        <>
+                            <Loading />
+                        </>
+                    ) : (
+                        <>
+                            <Navbar userId={userId} />
+                            <UserProfile user={user} />
+                        </>
+                    )}
+                </div>
+            </>
         )
     } else {
 

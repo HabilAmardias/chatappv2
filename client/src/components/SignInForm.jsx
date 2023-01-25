@@ -2,6 +2,7 @@ import { useState } from "react"
 import { API_URL } from "../lib/api-url"
 import Cookies from 'js-cookie'
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 export default function SignInForm({ onLoginChange }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
@@ -19,7 +20,7 @@ export default function SignInForm({ onLoginChange }) {
             Cookies.set('jwt', data.token);
             navigate(`/${data.user._id}`);
         } else {
-            navigate('/login_error');
+            navigate('/auth_error');
         }
     }
     const closeLogin = () => {
@@ -43,7 +44,7 @@ export default function SignInForm({ onLoginChange }) {
                 </section>
                 <button type="submit">Sign-In</button>
             </form>
-            <p>Do not have an account? <button onClick={closeLogin}></button></p>
+            <p>Do not have an account? <button onClick={closeLogin}>Sign-Up</button></p>
         </div>
     )
 }

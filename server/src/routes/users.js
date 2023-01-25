@@ -67,10 +67,8 @@ router.post('/:id', async (req, res) => {
         const user = await User.findById(id).populate('contacts');
         const newFriend = await User.findOne({ username: username }).populate('contacts');
         user.contacts.push(newFriend._id);
-        newFriend.contacts.push(user._id);
         await user.save();
-        await newFriend.save();
-        res.status(200).json({ user, newFriend });
+        res.status(200).json(user);
     } catch (err) {
         res.status(500).json(err);
     }
