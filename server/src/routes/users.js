@@ -66,9 +66,14 @@ router.post('/:id/contacts', async (req, res) => {
         const { username } = req.body;
         const user = await User.findById(id).populate('contacts');
         const newFriend = await User.findOne({ username: username });
-        user.contacts.push(newFriend);
-        await user.save();
-        res.status(200).json(user);
+        const duplicateContact = user.contacts.find(c => c._id === newFriend._id);
+        if (newFriend._id === user._id || duplicateContact !== undefined) {
+            res.status(400).json({ status: 'failed', message: 'Bad Request' })
+        } else {
+            user.contacts.push(newFriend);
+            await user.save();
+            res.status(200).json(user);
+        }
     } catch (err) {
         res.status(500).json(err);
     }
