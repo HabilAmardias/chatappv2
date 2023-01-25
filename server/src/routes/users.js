@@ -55,7 +55,7 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.post('/:id', async (req, res) => {
+router.post('/:id/contacts', async (req, res) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
         if (!token) {
@@ -65,8 +65,25 @@ router.post('/:id', async (req, res) => {
         const { id } = req.params;
         const { username } = req.body;
         const user = await User.findById(id).populate('contacts');
-        const newFriend = await User.findOne({ username: username }).populate('contacts');
-        user.contacts.push(newFriend._id);
+        const newFriend = await User.findOne({ username: username });
+        user.contacts.push(newFriend);
+        await user.save();
+        res.status(200).json(user);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+router.delete('/:id/contacts/:index', async (req, res) => {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        if (!token) {
+            res.status(200).json({ status: 'failed', message: 'Token not found' })
+        }
+        jwt.verify(token, JWT_SECRET);
+        const { id, index } = req.params;
+        const user = await User.findById(id).populate('contacts');
+        user.contacts.splice(parseInt(index), 1);
         await user.save();
         res.status(200).json(user);
     } catch (err) {

@@ -11,13 +11,13 @@ export default function UserProfile({ user }) {
         <main>
             <h2>Profile</h2>
             <section>
-                <h3>{user.username}</h3>
                 <img
                     className='profile-avatar'
                     src={`https://avatars.dicebear.com/api/bottts/${user.username}.svg`}
                     alt='avatar'
                     width='200px'
                 />
+                <h3>{user.username}</h3>
             </section>
             <section>
                 <p>{`UserID: ${user._id}`}</p>
