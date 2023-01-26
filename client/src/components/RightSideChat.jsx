@@ -1,0 +1,10 @@
+import ChatBox from "./ChatBox";
+
+
+export default function RightSideChat({ jwt, userId, currentChat, onCurrentChatChange }) {
+    return (
+        <div className="right-side-chat">
+            <ChatBox jwt={jwt} chat={currentChat} currentUser={userId} />
+        </div>
+    )
+}

@@ -7,6 +7,7 @@ import AuthError from './AuthError'
 import ContactList from './ContactList'
 import './index.css'
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import Error404 from './Error404'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: '/auth_error',
     element: <AuthError />
+  },
+  {
+    path: '*',
+    element: <Error404 />
   }
 
 ])
