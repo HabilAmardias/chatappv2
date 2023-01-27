@@ -24,17 +24,20 @@ export default function LeftSideChat({ jwt, userId, currentChat, onCurrentChatCh
         getChatrooms();
     }, [userId])
     return (
-        <div className="left-side-chat">
-            <h2>Chats</h2>
-            <div className="chat-container">
-                <div className="chat-rooms">
-                    {chats.map((chat) => (
-                        <div onClick={() => { onCurrentChatChange(chat) }} key={chat._id}>
-                            <Chatroom jwt={jwt} chat={chat} currentUserId={userId} />
-                        </div>
-                    ))}
+        <>
+            <div className="left-side-chat">
+                <h2>Chats</h2>
+                <div className="chat-container">
+                    <div className="chat-rooms">
+                        {chats.map((chat) => (
+                            <div className="chat" onClick={() => { onCurrentChatChange(chat) }} key={chat._id}>
+                                <Chatroom jwt={jwt} chat={chat} currentUserId={userId} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
+
     )
 }

@@ -1,4 +1,5 @@
 import ChatBox from "./ChatBox";
+import './style/RightSideChat.css'
 
 
 export default function RightSideChat({ jwt, userId, currentChat, onCurrentChatChange }) {

@@ -1,3 +1,7 @@
 .left-side-chat {
     width: 25%;
 }
+
+.chat {
+    cursor: pointer;
+}

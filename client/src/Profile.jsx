@@ -12,7 +12,7 @@ export default function Profile() {
     const [user, setUser] = useState({})
     const [loading, setLoading] = useState(false);
     const jwt = Cookies.get('jwt');
-    const { userId } = useParams();
+    const userId = Cookies.get('uid');
     const getUser = async () => {
         if (!userId) return;
         setLoading(true);
@@ -39,7 +39,7 @@ export default function Profile() {
                         </>
                     ) : (
                         <>
-                            <Navbar userId={userId} />
+                            <Navbar />
                             <UserProfile user={user} />
                         </>
                     )}

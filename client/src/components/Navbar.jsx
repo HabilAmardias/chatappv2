@@ -1,10 +1,10 @@
-export default function Navbar({ userId }) {
+export default function Navbar() {
     return (
         <header>
             <nav>
-                <a href={`/${userId}`}>Home</a>
-                <a href={`/${userId}/contacts`}>Contacts</a>
-                <a href={`/${userId}/profile`}>Profile</a>
+                <a href={`/home`}>Home</a>
+                <a href={`/contacts`}>Contacts</a>
+                <a href={`/profile`}>Profile</a>
             </nav>
         </header>
     )

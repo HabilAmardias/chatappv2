@@ -9,12 +9,12 @@ import RightSideChat from './components/RightSideChat';
 
 function App() {
   const [currentChat, setCurrentChat] = useState(null);
-  const { userId } = useParams();
+  const userId = Cookies.get('uid');
   const jwt = Cookies.get('jwt');
   if (jwt) {
     return (
       <>
-        <Navbar userId={userId} />
+        <Navbar />
         <main className='home-main-container'>
           <LeftSideChat
             jwt={jwt}

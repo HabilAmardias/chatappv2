@@ -24,7 +24,8 @@ export default function SignUpForm({ onLoginChange }) {
             const data = await response.json();
             if (data) {
                 Cookies.set('jwt', data.token);
-                navigate(`/${data.user._id}`);
+                Cookies.set('uid', data.user._id);
+                navigate(`/home`);
             } else {
                 navigate('/auth_error');
             }

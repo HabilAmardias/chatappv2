@@ -12,7 +12,7 @@ export default function ContactList() {
     const [contacts, setContacts] = useState([]);
     const [loading, setLoading] = useState(false);
     const jwt = Cookies.get('jwt');
-    const { userId } = useParams();
+    const userId = Cookies.get('uid');
     useEffect(() => {
         const getContacts = async () => {
             setLoading(true);
@@ -37,7 +37,7 @@ export default function ContactList() {
                     </>
                 ) : (
                     <>
-                        <Navbar userId={userId} />
+                        <Navbar />
                         <UserContacts jwt={jwt} userId={userId} contacts={contacts} onContactsChange={setContacts} />
                     </>
                 )}
