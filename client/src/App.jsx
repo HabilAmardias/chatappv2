@@ -9,7 +9,6 @@ import RightSideChat from './components/RightSideChat';
 
 function App() {
   const [currentChat, setCurrentChat] = useState(null);
-  const [onlineUsers, setOnlineUsers] = useState([]);
   const [sendMessage, setSendMessage] = useState(null);
   const [receiveMessage, setReceiveMessage] = useState(null);
   const userId = Cookies.get('uid');
@@ -17,14 +16,8 @@ function App() {
   const socket = useRef();
   useEffect(() => {
     socket.current = io('http://localhost:8800');
-    socket.current.emit('new-user-add', userId);
-    socket.current.on('get-users', (users) => {
-      setOnlineUsers(users)
-    }, [userId])
-  })
-  useEffect(() => {
     if (sendMessage !== null) {
-      socket.current.emit('send-message', sendMessage)
+      socket.current.emit('send-message', sendMessage);
     }
   }, [sendMessage])
   useEffect(() => {

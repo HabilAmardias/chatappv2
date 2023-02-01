@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react"
 import { API_URL } from "../lib/api-url";
+import AddChatroom from "./AddChatroom";
 import Chatroom from "./Chatroom";
 import './style/LeftSideChat.css'
 
@@ -26,7 +27,10 @@ export default function LeftSideChat({ jwt, userId, currentChat, onCurrentChatCh
     return (
         <>
             <div className="left-side-chat">
-                <h2>Chats</h2>
+                <div>
+                    <h2>Chats</h2>
+                    <AddChatroom jwt={jwt} userId={userId} chats={chats} setChats={setChats} />
+                </div>
                 <div className="chat-container">
                     <div className="chat-rooms">
                         {chats.map((chat) => (

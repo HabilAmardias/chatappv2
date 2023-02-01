@@ -48,7 +48,6 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
                 }
                 const response = await fetch(`${API_URL}/messages/${chat._id}`, fetchOption);
                 const data = await response.json();
-                console.log(data);
                 setMessages(data);
             } catch (err) {
                 console.error(err);
