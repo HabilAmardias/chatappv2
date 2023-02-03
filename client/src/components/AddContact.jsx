@@ -4,9 +4,9 @@ import { API_URL } from "../lib/api-url";
 
 export default function AddContact({ jwt, userId, onContactsChange }) {
     const [openAdd, setOpenAdd] = useState(false);
-    const [friendUsername, setFriendUsername] = useState(null);
+    const [friendUsername, setFriendUsername] = useState('');
     const addFriendHandler = async () => {
-        if (friendUsername !== null) {
+        if (friendUsername !== '') {
             const requestOption = {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${jwt}`, 'Content-Type': 'application/json' },
@@ -17,7 +17,7 @@ export default function AddContact({ jwt, userId, onContactsChange }) {
                 const response = await fetch(`${API_URL}/users/${userId}/contacts`, requestOption);
                 const data = await response.json();
                 onContactsChange(data.contacts);
-                setFriendUsername(null);
+                setFriendUsername('');
             } catch (err) {
                 console.error(err);
             }

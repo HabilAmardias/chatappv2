@@ -111,7 +111,6 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
                             ))}
                         </div>
                         <div className="chat-sender">
-                            <div>+</div>
                             <InputEmoji
                                 value={newMessage}
                                 onChange={handleChange}
