@@ -1,0 +1,10 @@
+.navbar-container {
+    display: flex;
+    height: 2rem;
+    justify-content: center;
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+}

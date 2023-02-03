@@ -1,0 +1,14 @@
+.open-add-handler {
+    height: fit-content;
+}
+
+.add-conversation {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.friend-username {
+    margin: 0;
+}

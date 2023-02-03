@@ -76,7 +76,8 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
             const response = await fetch(`${API_URL}/messages`, requestOption);
             const data = await response.json();
             setMessages([...messages, data]);
-            const receiverId = chat.members.find(({ _id }) => _id !== currentUser);
+            const receiver = chat.members.find(({ _id }) => _id !== currentUser);
+            const receiverId = receiver._id;
             setSendMessage({ ...message, receiverId });
             setNewMessage('');
         } catch (err) {
@@ -92,7 +93,7 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
     }, [receiveMessage])
     return (
         <>
-            <div>
+            <div className="chat-box">
                 {chat ? (
                     <>
                         <div className="chat-header">
@@ -100,7 +101,7 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
                                 className='contact-avatar'
                                 src={`https://avatars.dicebear.com/api/bottts/${otherUser?.username}.svg`}
                                 alt='avatar'
-                                width='40px'
+                                width='50px'
                             />
                             <p>{otherUser?.username}</p>
                         </div>

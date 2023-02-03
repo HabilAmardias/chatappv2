@@ -27,7 +27,7 @@ export default function LeftSideChat({ jwt, userId, currentChat, onCurrentChatCh
     return (
         <>
             <div className="left-side-chat">
-                <div>
+                <div className="left-side-header">
                     <h2>Chats</h2>
                     <AddChatroom jwt={jwt} userId={userId} chats={chats} setChats={setChats} />
                 </div>

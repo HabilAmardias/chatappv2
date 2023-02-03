@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react"
 import { Dialog, DialogTitle, DialogActions, DialogContent, Button } from "@mui/material";
 import { API_URL } from "../lib/api-url";
+import './style/AddChatroom.css'
 
 export default function AddChatroom({ jwt, userId, chats, setChats }) {
     const [openAdd, setOpenAdd] = useState(false);
@@ -42,7 +43,7 @@ export default function AddChatroom({ jwt, userId, chats, setChats }) {
     }, []);
     return (
         <>
-            <button onClick={handleAddChatroom}>
+            <button onClick={handleAddChatroom} className='open-add-handler'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
                 </svg>
@@ -51,7 +52,7 @@ export default function AddChatroom({ jwt, userId, chats, setChats }) {
                 <DialogTitle id='alert-dialog-title'>Add Conversation</DialogTitle>
                 <DialogContent>
                     {friends.map((friend, index) => (
-                        <div key={index} onClick={(e) => {
+                        <div className="add-conversation" key={index} onClick={(e) => {
                             addChatroomHandler(friend._id);
                             handleCloseAdd();
                         }}>
@@ -64,8 +65,8 @@ export default function AddChatroom({ jwt, userId, chats, setChats }) {
                                 />
                             </section>
                             <section>
-                                <p>{friend.username}</p>
-                                <small>{friend.email}</small>
+                                <p className="friend-username">{friend.username}</p>
+                                <small className="friend-email">{friend.email}</small>
                             </section>
                         </div>
                     ))}

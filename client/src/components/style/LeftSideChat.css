@@ -2,6 +2,22 @@
     width: 25%;
 }
 
+.left-side-header {
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .chat {
     cursor: pointer;
+    width: 95%;
+}
+
+.chat-container {
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 88vh;
 }

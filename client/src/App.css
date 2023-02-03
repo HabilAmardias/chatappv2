@@ -1,3 +1,5 @@
 .home-main-container {
     display: flex;
+    height: 81vh;
+    gap: 1rem;
 }
