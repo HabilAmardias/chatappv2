@@ -14,8 +14,8 @@ router.post('/', async (req, res) => {
         jwt.verify(token, JWT_SECRET);
         const { senderId, receiverId } = req.body;
         const newChatroom = new Chatroom({ members: [senderId, receiverId] });
-        await newChatroom.save();
-        const chatroom = await Chatroom.findById(newChatroom._id).populate('members');
+        const createdChatroom = await newChatroom.save();
+        const chatroom = await Chatroom.findById(createdChatroom._id).populate('members');
         res.status(200).json(chatroom)
     } catch (err) {
         res.status(500).json(err);
