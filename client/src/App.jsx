@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Navbar from './components/Navbar';
 import './App.css'
+import { useDispatch, useSelector } from "react-redux";
 import Cookies from 'js-cookie';
 import { io } from 'socket.io-client';
 import NotAuthorized from './components/NotAuthorized';
@@ -14,14 +15,19 @@ function App() {
   const userId = Cookies.get('uid');
   const jwt = Cookies.get('jwt');
   const socket = useRef();
+
   useEffect(() => {
-    socket.current = io('http://localhost:8800');
+    socket.current = io('ws://localhost:8800');
+    socket.current.emit('new-user-add', userId);
+  }, [userId])
+  useEffect(() => {
     if (sendMessage !== null) {
       socket.current.emit('send-message', sendMessage);
     }
   }, [sendMessage])
   useEffect(() => {
     socket.current.on('receive-message', (data) => {
+      console.log(data);
       setReceiveMessage(data)
     })
   }, [])

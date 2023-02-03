@@ -3,7 +3,7 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 const chatroomSchema = new mongoose.Schema({
     members: {
-        type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', unique: true }],
+        type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
         unique: true
     }
 })

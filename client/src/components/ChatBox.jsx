@@ -11,11 +11,7 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const scroll = useRef();
-    useEffect(() => {
-        if (receiveMessage !== null && receiveMessage.chatId === chat._id) {
-            setMessages([...messages, receiveMessage]);
-        }
-    }, [receiveMessage])
+
     useEffect(() => {
         const user = chat?.members?.find(({ _id }) => _id !== currentUser);
         const userId = user?._id;
@@ -64,8 +60,7 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
     const handleChange = (newMessage) => {
         setNewMessage(newMessage);
     }
-    const sendMessageHandler = async (e) => {
-        e.preventDefault();
+    const sendMessageHandler = async () => {
         const message = {
             sender: currentUser,
             text: newMessage,
@@ -81,13 +76,20 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
             const response = await fetch(`${API_URL}/messages`, requestOption);
             const data = await response.json();
             setMessages([...messages, data]);
+            const receiverId = chat.members.find(({ _id }) => _id !== currentUser);
+            setSendMessage({ ...message, receiverId });
             setNewMessage('');
         } catch (err) {
             console.error(err);
         }
-        const receiverId = chat.members.find(({ _id }) => _id !== currentUser);
-        setSendMessage({ ...message, receiverId });
+
     }
+    useEffect(() => {
+        console.log('Message Received', receiveMessage);
+        if (receiveMessage !== null && receiveMessage.chatId === chat._id) {
+            setMessages([...messages, receiveMessage]);
+        }
+    }, [receiveMessage])
     return (
         <>
             <div>
@@ -115,7 +117,7 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
                                 value={newMessage}
                                 onChange={handleChange}
                             />
-                            <button className="send-message-button" onClick={(e) => { sendMessageHandler(e) }}>Send</button>
+                            <button className="send-message-button" onClick={() => { sendMessageHandler() }}>Send</button>
                         </div>
                     </>
                 ) : (
