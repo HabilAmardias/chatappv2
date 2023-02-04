@@ -16,7 +16,7 @@ function App() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io('ws://localhost:8800');
+    socket.current = io(import.meta.env.VITE_SOCKET_URI);
     socket.current.emit('new-user-add', userId);
   }, [userId])
   useEffect(() => {

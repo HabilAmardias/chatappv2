@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { API_URL } from "../lib/api-url";
 import { format } from 'timeago.js'
+import Loading from "./Loading";
 import InputEmoji from 'react-input-emoji'
 import './style/ChatBox.css'
 
@@ -10,12 +11,14 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
     const [otherUser, setOtherUser] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const scroll = useRef();
 
     useEffect(() => {
         const user = chat?.members?.find(({ _id }) => _id !== currentUser);
         const userId = user?._id;
         const getUserData = async () => {
+            setIsLoading(true)
             try {
                 const requestOption = {
                     method: 'GET',
@@ -28,6 +31,7 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
             } catch (err) {
                 console.error(err);
             }
+            setIsLoading(false)
         }
         if (user !== null) {
             getUserData();
@@ -97,13 +101,21 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
                 {chat ? (
                     <>
                         <div className="chat-header">
-                            <img
-                                className='contact-avatar'
-                                src={`https://avatars.dicebear.com/api/bottts/${otherUser?.username}.svg`}
-                                alt='avatar'
-                                width='50px'
-                            />
-                            <p>{otherUser?.username}</p>
+                            {isLoading ? (
+                                <>
+                                    <Loading />
+                                </>
+                            ) : (
+                                <>
+                                    <img
+                                        className='contact-avatar'
+                                        src={`https://avatars.dicebear.com/api/bottts/${otherUser?.username}.svg`}
+                                        alt='avatar'
+                                        width='50px'
+                                    />
+                                    <p>{otherUser?.username}</p>
+                                </>
+                            )}
                         </div>
                         <div className="chat-body">
                             {messages.map((message) => (
@@ -127,8 +139,8 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
                     </>
                 ) : (
                     <>
-                        <div>
-                            <p>Tap a chat to start conversation</p>
+                        <div className="no-conversation-container">
+                            <p className="no-conversation-text">Tap a chat to start conversation</p>
                         </div>
                     </>
                 )}

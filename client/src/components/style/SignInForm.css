@@ -1,0 +1,76 @@
+.sign-in-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 25vw;
+    height: fit-content;
+    background-color: white;
+    padding: 1rem;
+    border: 1px solid #242424;
+    border-radius: 25px;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+input {
+    background: none;
+    border-radius: 15px;
+    width: 100%;
+    color: white;
+    height: 30px;
+}
+
+.signin-email-container {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    align-items: center;
+}
+
+.signin-password-container {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    align-items: center;
+}
+
+.signin-username-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+
+.signin-submit-button {
+    width: 100%;
+    border-radius: 15px;
+    padding: 0.75em;
+    color: white;
+    background-color: #157ae1;
+    cursor: pointer;
+    border-color: #157ae1;
+}
+
+.signin-submit-button:active {
+    background-color: #157;
+    border-color: #157;
+}
+
+.signup-handler {
+    background: none;
+    cursor: pointer;
+    border: none;
+    color: #157ae1;
+}
+
+.signup-handler:hover {
+    color: #157;
+}

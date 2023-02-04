@@ -6,9 +6,18 @@
 }
 
 .sign-out-handler {
-    display: flex;
-    gap: 5px;
-    background: none;
-    border: none;
+    border-radius: 15px;
+    padding: 0.75em;
+    color: white;
+    background-color: #157ae1;
     cursor: pointer;
+    border-color: #157ae1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sign-out-handler:active {
+    background-color: #157;
+    border-color: #157;
 }

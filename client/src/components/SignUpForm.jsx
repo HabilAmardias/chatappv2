@@ -43,30 +43,32 @@ export default function SignUpForm({ onLoginChange }) {
     }
 
     return (
-        <div>
-            <h3>Sign-Up</h3>
-            <form onSubmit={(e) => { SignUpHandler(e) }} method='POST'>
-                <section>
-                    <label htmlFor="email">Email:</label>
-                    <input type='email' id="email" value={newEmail} required onChange={(e) => {
-                        setNewEmail(e.target.value);
-                    }} />
-                </section>
-                <section>
-                    <label htmlFor="username">Username: </label>
-                    <input type='text' id="username" value={newUsername} minLength='6' required onChange={(e) => {
-                        setNewUsername(e.target.value);
-                    }} />
-                </section>
-                <section>
-                    <label htmlFor="password">Password: </label>
-                    <input type='password' id="password" value={newPassword} required minLength='8' onChange={(e) => {
-                        setNewPassword(e.target.value);
-                    }} />
-                </section>
-                <button type="submit">Sign-Up</button>
-            </form>
-            <p>Already have  an account? <button onClick={openLogin}>Sign-In</button></p>
-        </div>
+        <>
+            <div className="sign-in-container">
+                <h3 className="sign-in-header">Sign-Up</h3>
+                <form onSubmit={(e) => { SignUpHandler(e) }} method='POST' className="form">
+                    <section className="signin-email-container">
+                        <label htmlFor="email" className="signin-email-label">Email:</label>
+                        <input className="signin-email-input" type='email' id="email" value={newEmail} required onChange={(e) => {
+                            setNewEmail(e.target.value);
+                        }} />
+                    </section>
+                    <section className="signin-username-container">
+                        <label htmlFor="username" className="signin-username-label">Username: </label>
+                        <input className="signin-username-input" type='text' id="username" value={newUsername} minLength='6' required onChange={(e) => {
+                            setNewUsername(e.target.value);
+                        }} />
+                    </section>
+                    <section className="signin-password-container">
+                        <label htmlFor="password" className="signin-password-label">Password: </label>
+                        <input className="signin-password-input" type='password' id="password" value={newPassword} required minLength='8' onChange={(e) => {
+                            setNewPassword(e.target.value);
+                        }} />
+                    </section>
+                    <button type="submit" className="signin-submit-button">Sign-Up</button>
+                </form>
+                <p className="signin-text">Already have  an account? <button className="signup-handler" onClick={openLogin}>Sign-In</button></p>
+            </div>
+        </>
     )
 }
