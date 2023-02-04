@@ -52,7 +52,7 @@ export default function AddChatroom({ jwt, userId, chats, setChats }) {
                 <DialogTitle id='alert-dialog-title'>Add Conversation</DialogTitle>
                 <DialogContent>
                     {friends.map((friend, index) => (
-                        <div className="add-conversation" key={index} onClick={(e) => {
+                        <div className="add-conversation" key={friend._id} onClick={(e) => {
                             addChatroomHandler(friend._id);
                             handleCloseAdd();
                         }}>

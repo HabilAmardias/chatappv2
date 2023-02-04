@@ -1,7 +1,6 @@
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { API_URL } from "./lib/api-url";
 import Navbar from "./components/Navbar";
 import UserProfile from "./components/UserProfile";

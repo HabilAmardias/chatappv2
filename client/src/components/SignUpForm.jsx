@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { API_URL } from "../lib/api-url";
+import Cookies from "js-cookie";
 
 export default function SignUpForm({ onLoginChange }) {
     const [newEmail, setNewEmail] = useState('');
     const [newUsername, setNewUsername] = useState('');
     const [newPassword, setNewPassword] = useState('');
+    const navigate = useNavigate();
     const SignUpHandler = async (e) => {
         e.preventDefault();
         try {
@@ -18,13 +21,13 @@ export default function SignUpForm({ onLoginChange }) {
             const loginOption = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: userData.email, password: userData.password })
+                body: JSON.stringify({ email: userData.email, password: newPassword })
             }
             const response = await fetch(`${API_URL}/users/login`, loginOption);
             const data = await response.json();
             if (data) {
                 Cookies.set('jwt', data.token);
-                Cookies.set('uid', data.user._id);
+                localStorage.setItem('uid', data.user._id);
                 navigate(`/home`);
             } else {
                 navigate('/auth_error');
@@ -61,9 +64,9 @@ export default function SignUpForm({ onLoginChange }) {
                         setNewPassword(e.target.value);
                     }} />
                 </section>
-                <button type="submit">Sign-Un</button>
+                <button type="submit">Sign-Up</button>
             </form>
-            <p>Already have  an account? <button onClick={openLogin}></button></p>
+            <p>Already have  an account? <button onClick={openLogin}>Sign-In</button></p>
         </div>
     )
 }

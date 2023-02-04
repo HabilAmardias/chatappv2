@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import Navbar from './components/Navbar';
 import './App.css'
-import { useDispatch, useSelector } from "react-redux";
 import Cookies from 'js-cookie';
 import { io } from 'socket.io-client';
 import NotAuthorized from './components/NotAuthorized';
