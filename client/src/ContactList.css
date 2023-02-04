@@ -1,0 +1,5 @@
+.user-contacts-container {
+    height: 93%;
+    display: flex;
+    justify-content: center;
+}

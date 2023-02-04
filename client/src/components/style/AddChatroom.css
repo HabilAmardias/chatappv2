@@ -1,5 +1,8 @@
 .open-add-handler {
     height: fit-content;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .add-conversation {

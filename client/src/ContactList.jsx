@@ -6,6 +6,7 @@ import Loading from "./components/Loading";
 import Navbar from "./components/Navbar";
 import UserContacts from "./components/UserContacts";
 import NotAuthorized from "./components/NotAuthorized";
+import './ContactList.css'
 
 export default function ContactList() {
     const [contacts, setContacts] = useState([]);
@@ -29,7 +30,7 @@ export default function ContactList() {
     }, []);
     if (jwt) {
         return (
-            <div>
+            <>
                 {loading ? (
                     <>
                         <Loading />
@@ -37,10 +38,12 @@ export default function ContactList() {
                 ) : (
                     <>
                         <Navbar />
-                        <UserContacts jwt={jwt} userId={userId} contacts={contacts} onContactsChange={setContacts} />
+                        <div className="user-contacts-container">
+                            <UserContacts jwt={jwt} userId={userId} contacts={contacts} onContactsChange={setContacts} />
+                        </div>
                     </>
                 )}
-            </div>
+            </>
         )
     } else {
         return (
