@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import UserProfile from "./components/UserProfile";
 import Loading from "./components/Loading";
 import NotAuthorized from "./components/NotAuthorized";
+import './Profile.css'
 
 export default function Profile() {
     const [user, setUser] = useState({})
@@ -31,7 +32,7 @@ export default function Profile() {
     if (jwt) {
         return (
             <>
-                <div>
+                <>
                     {loading ? (
                         <>
                             <Loading />
@@ -39,10 +40,12 @@ export default function Profile() {
                     ) : (
                         <>
                             <Navbar />
-                            <UserProfile user={user} />
+                            <div className="user-profile-container">
+                                <UserProfile user={user} />
+                            </div>
                         </>
                     )}
-                </div>
+                </>
             </>
         )
     } else {

@@ -1,0 +1,14 @@
+.profile-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.sign-out-handler {
+    display: flex;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
