@@ -6,7 +6,7 @@ export default function UserProfile({ user }) {
     const SignOutHandler = () => {
         navigate('/');
         Cookies.remove('jwt');
-        Cookies.remove('uid');
+        localStorage.removeItem('uid');
     }
     return (
         <main>
