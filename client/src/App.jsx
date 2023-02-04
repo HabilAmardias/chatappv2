@@ -12,7 +12,7 @@ function App() {
   const [currentChat, setCurrentChat] = useState(null);
   const [sendMessage, setSendMessage] = useState(null);
   const [receiveMessage, setReceiveMessage] = useState(null);
-  const userId = Cookies.get('uid');
+  const userId = localStorage.getItem('uid');
   const jwt = Cookies.get('jwt');
   const socket = useRef();
 

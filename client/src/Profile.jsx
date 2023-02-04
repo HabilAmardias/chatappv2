@@ -12,7 +12,7 @@ export default function Profile() {
     const [user, setUser] = useState({})
     const [loading, setLoading] = useState(false);
     const jwt = Cookies.get('jwt');
-    const userId = Cookies.get('uid');
+    const userId = localStorage.getItem('uid');
     const getUser = async () => {
         if (!userId) return;
         setLoading(true);

@@ -18,7 +18,7 @@ export default function SignInForm({ onLoginChange }) {
         const data = await response.json();
         if (data) {
             Cookies.set('jwt', data.token);
-            Cookies.set('uid', data.user._id)
+            localStorage.setItem('uid', data.user._id);
             navigate(`/home`);
         } else {
             navigate('/auth_error');

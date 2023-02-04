@@ -12,7 +12,7 @@ export default function ContactList() {
     const [contacts, setContacts] = useState([]);
     const [loading, setLoading] = useState(false);
     const jwt = Cookies.get('jwt');
-    const userId = Cookies.get('uid');
+    const userId = localStorage.getItem('uid');
     useEffect(() => {
         const getContacts = async () => {
             setLoading(true);

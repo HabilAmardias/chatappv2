@@ -87,7 +87,7 @@ export default function ChatBox({ jwt, chat, currentUser, setSendMessage, receiv
     }
     useEffect(() => {
         console.log('Message Received', receiveMessage);
-        if (receiveMessage !== null && receiveMessage.chatId === chat._id) {
+        if (receiveMessage !== null && receiveMessage.conversationId === chat._id) {
             setMessages([...messages, receiveMessage]);
         }
     }, [receiveMessage])
