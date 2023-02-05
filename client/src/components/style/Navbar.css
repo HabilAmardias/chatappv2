@@ -13,4 +13,9 @@ nav {
 nav a {
     padding: 1rem;
     text-decoration: none;
+    color: whitesmoke;
+}
+
+nav a:hover {
+    color: rgba(152, 68, 183, 1);
 }

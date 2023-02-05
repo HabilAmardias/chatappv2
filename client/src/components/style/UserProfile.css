@@ -1,17 +1,23 @@
 .profile-main-container {
+    width: 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 1rem;
+    border: 1px solid #242424;
+    border-radius: 25px;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .sign-out-handler {
     border-radius: 15px;
     padding: 0.75em;
     color: white;
-    background-color: #157ae1;
+    background-color: rgba(152, 68, 183, 1);
     cursor: pointer;
-    border-color: #157ae1;
+    border-color: rgba(152, 68, 183, 1);
     display: flex;
     align-items: center;
     gap: 10px;

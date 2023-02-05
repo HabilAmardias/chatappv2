@@ -35,19 +35,24 @@ function App() {
       <>
         <Navbar />
         <main className='home-main-container'>
-          <LeftSideChat
-            jwt={jwt}
-            userId={userId}
-            currentChat={currentChat}
-            onCurrentChatChange={setCurrentChat}
-          />
-          <RightSideChat
-            jwt={jwt}
-            userId={userId}
-            currentChat={currentChat}
-            setSendMessage={setSendMessage}
-            receiveMessage={receiveMessage}
-          />
+          <div className='left-right-chat-container'>
+            <LeftSideChat
+              jwt={jwt}
+              userId={userId}
+              currentChat={currentChat}
+              onCurrentChatChange={setCurrentChat}
+            />
+            <RightSideChat
+              jwt={jwt}
+              userId={userId}
+              currentChat={currentChat}
+              setSendMessage={setSendMessage}
+              receiveMessage={receiveMessage}
+            />
+          </div>
+          <div class="wave"></div>
+          <div class="wave"></div>
+          <div class="wave"></div>
         </main>
       </>
     )

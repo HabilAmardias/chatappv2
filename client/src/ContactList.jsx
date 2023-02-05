@@ -34,6 +34,9 @@ export default function ContactList() {
                 {loading ? (
                     <>
                         <Loading />
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
                     </>
                 ) : (
                     <>
@@ -41,6 +44,9 @@ export default function ContactList() {
                         <div className="user-contacts-container">
                             <UserContacts jwt={jwt} userId={userId} contacts={contacts} onContactsChange={setContacts} />
                         </div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
                     </>
                 )}
             </>

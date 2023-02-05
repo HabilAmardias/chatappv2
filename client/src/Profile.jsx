@@ -36,6 +36,9 @@ export default function Profile() {
                     {loading ? (
                         <>
                             <Loading />
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                            <div class="wave"></div>
                         </>
                     ) : (
                         <>
@@ -43,6 +46,9 @@ export default function Profile() {
                             <div className="user-profile-container">
                                 <UserProfile user={user} />
                             </div>
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                            <div class="wave"></div>
                         </>
                     )}
                 </>

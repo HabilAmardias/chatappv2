@@ -13,6 +13,9 @@ export default function Login() {
                 ) : (
                     <SignUpForm onLoginChange={setLogin} />
                 )}
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
             </main>
         </>
     )

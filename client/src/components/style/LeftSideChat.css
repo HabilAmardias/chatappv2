@@ -9,6 +9,7 @@
     height: 10%;
     align-items: center;
     justify-content: space-between;
+    padding-right: 1rem;
 }
 
 .chat {

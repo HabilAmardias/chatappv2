@@ -5,7 +5,7 @@
     gap: 20px;
     width: 25vw;
     height: fit-content;
-    background-color: white;
+    background-color: whitesmoke;
     padding: 1rem;
     border: 1px solid #242424;
     border-radius: 25px;
@@ -54,9 +54,9 @@ input {
     border-radius: 15px;
     padding: 0.75em;
     color: white;
-    background-color: #157ae1;
+    background-color: rgba(152, 68, 183, 1);
     cursor: pointer;
-    border-color: #157ae1;
+    border-color: rgba(152, 68, 183, 1);
 }
 
 .signin-submit-button:active {
@@ -68,7 +68,7 @@ input {
     background: none;
     cursor: pointer;
     border: none;
-    color: #157ae1;
+    color: rgba(152, 68, 183, 1);
 }
 
 .signup-handler:hover {
